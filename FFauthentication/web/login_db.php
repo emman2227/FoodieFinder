@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } else {
         $_SESSION["error"] = "Invalid email or password!";
-        header("Location: login_db.php");
+        header("Location: login.php");
         exit();
     }
 }
