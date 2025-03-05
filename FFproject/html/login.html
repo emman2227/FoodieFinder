@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="authentication.css">
+    <title>Login</title>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><img src="images/FoodieFinder Logo's.png"></div>
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="btns">
+                <button class="btn_login"><a href="login.html">Log in</a></button>
+                <button class="btn_signup"><a href="">Sign up</a></button>
+            </div>
+        </div>
+    </header>
+
+<main>
+    <div class="bg-image">
+            <img src="images/login-bg.jpg" alt="Background Image">  
+        </div> <!-- Background Image -->
+        <div class="login-container">
+            <form action="/login" method="post">
+                <h2>Log in</h2>
+                <p>Don’t have an account? <a href="signup.html">Create an account</a></p>
+    
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <img src="images/email.png" alt="Email Icon">
+                        <input type="email" id="email" name="email" maxlength="50" placeholder="Enter Email" required>
+                    </div>
+                </div>
+    
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <img src="images/lock.png" alt="Lock Icon">
+                        <input type="password" id="password" name="password" maxlength="18" placeholder="Enter password" required>
+                    </div>
+                </div>
+    
+                <button type="submit" class="login-button" onclick="window.location.href='main.html'">Login</button>
+    
+                <div class="extras">
+                    <label><input type="checkbox"> Remember me</label>
+                    <a href="forgotpass.html">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+    </div> 
+    </main>
+    
+
+    <footer>
+        <div class="footer-container">
+            <div class="sec sci">
+                <div class="logo">
+                    <img src="images/FoodieFinder Logo's.png" width="100px">
+                    <p>&copy; 2025 FoodieFinder. All rights reserved</p>
+                    <ul class="icn">
+                        <li><img src="images/twt.png" width="15px"></li>
+                        <li><img src="images/fb.png" width="15px"></li>
+                        <li><img src="images/link.png" width="15px"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sec navigation">
+                <h2>Navigation</h2>
+                <ul class="navg">
+                    <li><a href="index.html">Home</a></li> </br>
+                    <li><a href="about.html">About Us</a></li> </br>
+                    <li><a href="#">Contact Us</a></li> </br>
+                    <li><a href="active">Support</a></li> </br>
+                </ul>
+            </div>
+            <div class="sec help">
+                <h2>Helpful Links</h2>
+                <ul class="navg">
+                    <li><a href="#">Privacy Policy</a></li> </br>
+                    <li><a href="#">Terms and Conditions</a></li> </br>
+                    <li><a href="#">FAQs</a></li> </br>
+                </ul>
+            </div>
+        </div>
+      </footer>
+</body>
+</html>
