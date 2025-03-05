@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="validation.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img src="logo.png" alt="Logo" class="sidebar-logo">
+        <button class="menu-button active" onclick="window.location.href='validation.html';">Dashboard</button>
+        <button class="menu-button" onclick="window.location.href='verification.html';">Shops Documents</button>
+    </div>
+
+<!-- Main Content -->
+<div class="main-content">
+    
+    <!-- Header Section -->
+    <div class="header">
+        <div class="banner">
+            <h1>Shop Verification,<br>Ensuring Trust & Authenticity</h1>
+        </div>
+        <img src="validation.png" alt="Verification">
+    </div>
+
+    <!-- Overview Section -->
+    <div class="overview">
+        <h3><strong>Overview</strong></h3>
+        <div class="overview-cards">
+            <div class="card">
+                <p>Total Registered Shops</p>
+                <img src="shop.png" alt="Shops Icon">
+                <h2>120 Shops</h2>
+            </div>
+            <div class="card">
+                <p>Total Approved Shops</p>
+                <img src="approved.png" alt="Approved Icon">
+                <h2>110 Shops</h2>
+            </div>
+            <div class="card">
+                <p>Total Declined Shops</p>
+                <img src="declined.png" alt="Declined Icon">
+                <h2>10 Shops</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Enter shop name or email">
+    </div>
+
+    <!-- Shops Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Shop Name</th>
+                <th>Actions</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>example1@mail.com</td>
+                <td>Awesome Shop</td>
+                <td>
+                    <button class="approve">Approve</button>
+                    <button class="decline">Decline</button>
+                </td>
+                <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>example2@mail.com</td>
+                <td>Best Store</td>
+                <td>
+                    <button class="approve">Approve</button>
+                    <button class="decline">Decline</button>
+                </td>
+                <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>example3@mail.com</td>
+                <td>Cool Place</td>
+                <td>
+                    <button class="approve">Approve</button>
+                    <button class="decline">Decline</button>
+                </td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Bulk Actions -->
+    <div class="actions">
+        <button class="approve-selected" >Approve Selected</button>
+        <button class="decline-selected">Decline Selected</button>
+    </div>
+</div>
