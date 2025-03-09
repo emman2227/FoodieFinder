@@ -1,0 +1,21 @@
+Raw Request Body: {
+  "username": "hahaa",
+  "email": "hat@example.com",
+  "password": "123456",
+  "confirm_password": "123456"
+}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hhaha"}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hahaha"}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hahaha"}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hahaha"}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hahaha"}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hahaha"}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hahaha"}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hahaha"}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hahaha"}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hahaha"}
+Raw Request Body: {"confirmPassword":"hahaha","email":"hahaha@gmail.com","password":"hahaha","username":"hahaha"}
+Raw Request Body: 
+Invalid JSON received: 
+Raw Request Body: 
+Invalid JSON received: 
