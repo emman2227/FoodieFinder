@@ -14,9 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -28,8 +27,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -39,67 +42,78 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
-
 @Composable
-fun ForgotPasswordScreen(navController: NavController){
-    var emailAddress by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var confirmPassword by remember { mutableStateOf("") }
+fun ChangePassScreen(navController: NavController) {
+    var currPass by remember { mutableStateOf("") }
+    var newPass by remember { mutableStateOf("") }
 
-    Box (
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
-        Column (
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(bottom = 125.dp),
+        Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth(),
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.arrow_back),
-                    contentDescription = "Back Button",
-                    modifier = Modifier
-                        .size(35.dp)
-                        .fillMaxWidth()
-                        .padding(start = 20.dp)
-                        .clickable { navController.navigate("screen_Login") }
-                )
-                Text (text = "Forgot Password?", fontSize = 25.sp, modifier = Modifier
-                    .padding(start = 58.dp)
-                )
-
-            }
-            Image(
-                painter = painterResource(R.drawable.forgot_password_img),
-                contentDescription = "Forgot Password Image",
                 modifier = Modifier
-                    .size(220.dp)
-            )
-            Spacer(modifier = Modifier.height(50.dp))
-            EmailAddressField(emailAddress) { emailAddress = it }
-            Spacer(modifier = Modifier.height(12.dp))
-            NewPasswordField (password) { password = it }
-            Spacer(modifier = Modifier.height(12.dp))
-            ReEnterPasswordField (confirmPassword) { confirmPassword = it }
-            Spacer(modifier = Modifier.height(30.dp))
-            ResetAccountButton(navController)
+                    .padding(top = 20.dp, start = 10.dp)
+                    .fillMaxWidth()
+            ) {
+                Box(
+                    modifier = Modifier
+                        .padding(4.dp) // Reduce external padding to bring it closer
+                        .size(24.dp) // Set a fixed size for the box (adjust as needed)
+                        .clip(CircleShape) // Makes it perfectly round
+                        .background(colorResource(id = R.color.fofi_orange))
+                        .clickable {
+                            navController.navigate("settings_screen")
+                        } // Ensure it's still clickable
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.arrow_back),
+                        contentDescription = "Back Button",
+                        colorFilter = ColorFilter.tint(Color.White),
+                        modifier = Modifier
+                            .size(14.dp) // Adjust size of the icon
+                            .align(Alignment.Center) // Center the icon inside the Box
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = "Change Password",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.weight(1.5f))
+            }
+            Spacer(modifier = Modifier.height(40.dp))
+            CurrPassField(currPass) { currPass = it }
+            Spacer(modifier = Modifier.height(20.dp))
+            NewPassField(newPass) { newPass = it }
+            Spacer(modifier = Modifier.weight(1f))
+            Row (
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 30.dp)
+
+            ) {
+                CancelButton {  }
+                DoneButton {  }
+            }
         }
     }
-
 }
 
 @Composable
-fun EmailAddressField(value: String, onValueChange: (String) -> Unit) {
-    val maxChars = 25 // Set character limit
+fun CurrPassField(value: String, onValueChange: (String) -> Unit) {
+    var isPasswordVisible by remember { mutableStateOf(false) }
+    val maxChars = 18
 
     OutlinedTextField(
         value = value,
@@ -108,28 +122,33 @@ fun EmailAddressField(value: String, onValueChange: (String) -> Unit) {
                 onValueChange(newText)
             }
         },
-        label = { Text(text = "Email Address", fontSize = 16.sp, color = Color.Black) },
+        label = { Text(text = "Current Password", fontSize = 16.sp, color = Color.Black) },
         colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = Color(0xFFF5F5F5),
-            unfocusedContainerColor = Color(0xFFF5F5F5),
-            focusedTextColor = Color.Black
+            unfocusedContainerColor = Color(0xFFF5F5F5)
         ),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         singleLine = true,
         maxLines = 1,
-        modifier = Modifier.widthIn(min = 280.dp, max = 280.dp), // Prevent stretching
-        leadingIcon = {
+        modifier = Modifier.widthIn(min = 280.dp, max = 280.dp),
+        trailingIcon = {
             Icon(
                 tint = Color.Black,
-                painter = painterResource(id = R.drawable.email_icon),
-                contentDescription = "Email Icon"
+                painter = painterResource(
+                    id = if (isPasswordVisible) R.drawable.show_icon else R.drawable.hide_icon
+                ),
+                contentDescription = if (isPasswordVisible) "Hide Password" else "Show Password",
+                modifier = Modifier
+                    .clickable { isPasswordVisible = !isPasswordVisible }
+                    .size(24.dp) // Adjust icon size if needed
             )
-        }
+        },
+        visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
     )
 }
 
 @Composable
-fun NewPasswordField(value: String, onValueChange: (String) -> Unit) {
+fun NewPassField(value: String, onValueChange: (String) -> Unit) {
     var isPasswordVisible by remember { mutableStateOf(false) }
     val maxChars = 18
 
@@ -149,13 +168,6 @@ fun NewPasswordField(value: String, onValueChange: (String) -> Unit) {
         singleLine = true,
         maxLines = 1,
         modifier = Modifier.widthIn(min = 280.dp, max = 280.dp),
-        leadingIcon = {
-            Icon(
-                tint = Color.Black,
-                painter = painterResource(id = R.drawable.locked_icon),
-                contentDescription = "Locked Icon"
-            )
-        },
         trailingIcon = {
             Icon(
                 tint = Color.Black,
@@ -172,64 +184,8 @@ fun NewPasswordField(value: String, onValueChange: (String) -> Unit) {
     )
 }
 
+@Preview(showBackground = true)
 @Composable
-fun ReEnterPasswordField(value: String, onValueChange: (String) -> Unit) {
-    var isPasswordVisible by remember { mutableStateOf(false) }
-    val maxChars = 18
-
-    OutlinedTextField(
-        value = value,
-        onValueChange = { newText ->
-            if (newText.length <= maxChars && !newText.contains("\n")) { // Prevent Enter key
-                onValueChange(newText)
-            }
-        },
-        label = { Text(text = "Re-Enter Password", fontSize = 16.sp, color = Color.Black) },
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = Color(0xFFF5F5F5),
-            unfocusedContainerColor = Color(0xFFF5F5F5)
-        ),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        singleLine = true,
-        maxLines = 1,
-        modifier = Modifier.widthIn(min = 280.dp, max = 280.dp),
-        leadingIcon = {
-            Icon(
-                tint = Color.Black,
-                painter = painterResource(id = R.drawable.locked_icon),
-                contentDescription = "Locked Icon"
-            )
-        },
-        trailingIcon = {
-            Icon(
-                tint = Color.Black,
-                painter = painterResource(
-                    id = if (isPasswordVisible) R.drawable.show_icon else R.drawable.hide_icon
-                ),
-                contentDescription = if (isPasswordVisible) "Hide Password" else "Show Password",
-                modifier = Modifier
-                    .clickable { isPasswordVisible = !isPasswordVisible }
-                    .size(24.dp) // Adjust icon size if needed
-            )
-        },
-        visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
-    )
-}
-
-@Composable
-fun ResetAccountButton(navController: NavController) {
-    Button(
-        onClick = { navController.navigate("screen_Main") },
-        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFAA96C)),
-        modifier = Modifier.size(280.dp, 40.dp)
-    ) {
-        Text(text = "Reset Account", fontSize = 18.sp, color = Color.White)
-    }
-}
-
-
-@Preview (showBackground = true)
-@Composable
-fun ShowForgotPasswordScreen() {
-    ForgotPasswordScreen(navController = rememberNavController())
+fun ShowChangePassScreen() {
+    ChangePassScreen(rememberNavController())
 }

@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -31,9 +32,9 @@ fun Shop() {
     Box(
         modifier = Modifier
             .width(320.dp)
-            .height(180.dp)
-            .clip(RoundedCornerShape(30.dp)) // Rounded corners apply to entire Box
-            .border(0.5.dp, color = Color.Black, shape = RoundedCornerShape(30.dp))
+            .height(200.dp)
+            .clip(RoundedCornerShape(20.dp)) // Rounded corners apply to entire Box
+            .border(0.dp, color = Color.Black, shape = RoundedCornerShape(20.dp))
             .background(Color.White)
     ) {
         Column(
@@ -43,7 +44,7 @@ fun Shop() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(140.dp) // Allocates proper space for image
-                    .clip(RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)) // Apply rounding
+                    .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)) // Apply rounding
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.sampleimg),
@@ -58,16 +59,17 @@ fun Shop() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp) // Ensures text area stays within the box
-                    .background(Color.LightGray)
-                    .padding(start = 15.dp, top = 3.dp)
+                    .background(Color.White)
+                    .padding(start = 15.dp, top = 8.dp)
             ) {
                 Column {
                     Text(
                         text = "Shop Name",
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.Black
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(5.dp))
                     Text(
                         text = "Short Location",
                         fontSize = 10.sp,

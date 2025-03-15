@@ -1,10 +1,7 @@
 package com.example.fofitest
 
-import android.graphics.Paint.Align
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,12 +11,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -38,18 +34,16 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun ShopContent(navController: NavController) {
-
+fun ItemContent (navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White),
         contentAlignment = Alignment.TopCenter
     ) {
-        Column(
+        Column (
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.verticalScroll(rememberScrollState()) // Enables scrolling
         ) {
             Box (
                 modifier = Modifier
@@ -69,7 +63,7 @@ fun ShopContent(navController: NavController) {
                             .background(colorResource(id = R.color.fofi_orange)) // Optional: Adds a semi-transparent background
                             .padding(8.dp) // Padding inside the background
                             .clickable {
-                                navController.navigate("main_screen")
+                                navController.navigate("screen_ShopContent")
                             }
                     ) {
                         Image(
@@ -86,88 +80,89 @@ fun ShopContent(navController: NavController) {
                             .padding(16.dp) // Adds some padding from the edges
                             .clip(RoundedCornerShape(50)) // Optional: Makes it rounded
                             .background(colorResource(id = R.color.fofi_orange)) // Optional: Adds a semi-transparent background
-                            .clickable { navController.navigate("screen_Bingo") }
+                            .padding(8.dp) // Padding inside the background
+                            .clickable { /* Handle back action */ }
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.bingo_btn), // Your vector drawable
-                            contentDescription = ""
-
+                            painter = painterResource(id = R.drawable.favorite), // Your vector drawable
+                            contentDescription = "Back Button",
+                            colorFilter = ColorFilter.tint(Color.White),
+                            modifier = Modifier
+                                .width(24.dp)
+                                .height(24.dp)
                         )
                     }
                 }
             }
-
-            // Shop Image
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(180.dp)
+                    .height(250.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.sampleimg),
+                    painter = painterResource(id = R.drawable.sampleimg2),
                     contentScale = ContentScale.Crop,
                     contentDescription = null,
                     modifier = Modifier
-                        .clip(RoundedCornerShape(topStart = 35.dp, topEnd = 35.dp))
                         .matchParentSize()
+                        .clip(RoundedCornerShape(topStart = 35.dp, topEnd = 35.dp))
                 )
             }
-
-            // Shop Info Box
-            Box(
-                modifier = Modifier
-                    .offset(y = (-150.dp / 3)) // Moves the entire box up
-                    .width(320.dp)
-                    .height(150.dp)
-                    .clip(RoundedCornerShape(30.dp))
-                    .border(0.5.dp, Color.Black, RoundedCornerShape(30.dp))
-                    .background(Color.White),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(5.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    ShopNameContainer()
-                    WorkingHoursContainer()
-                    LocationContainer()
-
-                }
-            }
-
-            // Shop Description
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp)
+                    .height(130.dp)
+                    .padding(start = 20.dp, top = 20.dp, bottom = 10.dp)
             ) {
-                Column(
-                    modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 10.dp),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.Start,
+                Column (
+                    modifier = Modifier,
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                    horizontalAlignment = Alignment.Start
                 ) {
-                    Text(
-                        text = "Shop Description",
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color.Black
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    ShopDesContainer()
-
+                    ProductNameContainer()
+                    Spacer(modifier = Modifier.height(2.dp))
+                    ItemDescriptionContainer()
                 }
             }
-            Spacer(modifier = Modifier
-                .height(10.dp))
-            ShopGrid(navController)
+            Box (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(start = 20.dp)
+            ){
+                Column {
+                    ItemPriceContainer()
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .padding(20.dp)
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    PreOrderBtn {  }
+                    Spacer(
+                        modifier = Modifier
+                            .height(15.dp)
+                    )
+                    CancelBtn {  }
+                }
+            }
+
         }
     }
 }
 
 @Composable
-fun ShopNameContainer() {
+fun ProductNameContainer() {
     Text(
-        text = "Shop Name",
+        text = "Product Name",
         fontSize = 30.sp,
         fontWeight = FontWeight.SemiBold,
         color = Color.Black
@@ -175,51 +170,66 @@ fun ShopNameContainer() {
 }
 
 @Composable
-fun WorkingHoursContainer() {
+fun ItemDescriptionContainer() {
     Text(
-        text = "Shop Working Hours",
-        fontSize = 16.sp,
-        color = Color.Black
-    )
-}
-@Composable
-fun LocationContainer() {
-    Text(
-        text = "Shop Location",
-        fontSize = 16.sp,
-        color = Color.Black
-    )
-}
-
-@Composable
-fun ShopDesContainer() {
-    Text(
-        text = "Shop description Shop description Shop description Shop description...",
+        text = "Project Description blah blah blah blah blah blah blah blah blah blah blah blah",
         color = Color.Gray,
-        fontSize = 12.sp
+        fontSize = 16.sp
     )
 }
 
-// Move ShopGrid OUTSIDE of ShopContent
 @Composable
-fun ShopGrid(navController: NavController) {
-    Column(
+fun ItemPriceContainer() {
+    Text(
+        text = "Item Price",
+        fontSize = 30.sp,
+        fontWeight = FontWeight.SemiBold,
+        color = Color.Black
+    )
+}
+
+@Composable
+fun PreOrderBtn(onClick: () -> Unit) {
+    Box(
         modifier = Modifier
-            .padding(bottom = 20.dp),
-        verticalArrangement = Arrangement.spacedBy(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .width(220.dp) // Set button width
+            .height(50.dp) // Set button height
+            .clip(RoundedCornerShape(10.dp)) // Rounded corners
+            .background(colorResource(id = R.color.fofi_orange)) // Green background
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
     ) {
-        repeat(3) {
-            Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
-                Item(navController)
-                Item(navController)
-            }
-        }
+        Text(
+            text = "Pre-Order",
+            fontSize = 16.sp,
+            color = Color.White,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun ShowShopContent() {
-    ShopContent(navController = rememberNavController())
+fun CancelBtn(onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .width(220.dp) // Set button width
+            .height(50.dp) // Set button height
+            .clip(RoundedCornerShape(10.dp)) // Rounded corners
+            .background(Color.Gray) // Green background
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Cancel",
+            fontSize = 16.sp,
+            color = Color.White,
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
+
+@Preview (showBackground = true)
+@Composable
+fun ShowItemContent () {
+    ItemContent(navController = rememberNavController())
 }

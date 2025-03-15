@@ -1,6 +1,5 @@
 package com.example.fofitest
 
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -11,17 +10,14 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -33,103 +29,126 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import kotlinx.coroutines.launch
+import com.example.fofitest.ui.theme.BingoGuide
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavController) {
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
     val navController = rememberNavController()
 
+    Scaffold(
+        bottomBar = { BottomNavigationBar(navController) }
+    ) { innerPadding ->
+        Box(modifier = Modifier
+            .padding(innerPadding)) {
+            NavHost(
+                navController = navController,
+                startDestination = "main_screen"
+            ) {
+                composable("main_screen") { MainContent(navController) }
+                composable("favorites_screen") { FavoritesScreen(navController) }
+                composable("screen_FavoriteContent") { FavoriteContent(navController) }
+                composable("settings_screen") { SettingsScreen(navController) }
+                composable("account_screen") { AccountScreen(navController) }
+                composable("screen_ShopContent") { ShopContent(navController) }
+                composable("screen_Bingo") { BingoCard(navController) }
+                composable("screen_BingoGuide") { BingoGuide(navController) }
+                composable("screen_ItemContent") { ItemContent(navController) }
+                composable("screen_EditProfile") { EditProfileScreen(navController)}
+                composable("screen_ChangeUsername") { ChangeUsernameScreen(navController)}
+                composable("screen_ChangeProfile") { ChangeProfileScreen(navController)}
+                composable("screen_ChangeEmail") { ChangeEmailScreen(navController) }
+                composable("screen_ChangePass") { ChangePassScreen(navController) }
 
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
-            DrawerContent { destination ->
-                scope.launch { drawerState.close() }
-                if (destination == "main_screen") {
-                    if (navController.currentBackStackEntry?.destination?.route != "main_screen") {
-                        navController.navigate("main_screen") {
-                            popUpTo(navController.graph.startDestinationId) { inclusive = true }
+            }
+        }
+    }
+}
+
+@Composable
+fun BottomNavigationBar(navController: NavController) {
+    val items = listOf(
+        BottomNavItem("Home", Icons.Default.Home, "main_screen"),
+        BottomNavItem("Favorites", Icons.Default.FavoriteBorder, "favorites_screen"),
+        BottomNavItem("Settings", Icons.Default.Settings, "settings_screen")
+    )
+    val fofiOrange = colorResource(id = R.color.fofi_orange)
+    val currentBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = currentBackStackEntry?.destination?.route ?: "main_screen"
+
+    NavigationBar(
+        modifier = Modifier
+            .height(55.dp),
+        containerColor = Color.White
+    ) {
+        items.forEach { item ->
+            NavigationBarItem(
+                icon = { Icon(item.icon, contentDescription = item.label) },
+                label = { Text(item.label) },
+                selected = currentRoute == item.route,
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = fofiOrange,
+                    selectedTextColor = fofiOrange,
+                    unselectedIconColor = Color.Gray,
+                    unselectedTextColor = Color.Gray
+                ),
+                onClick = {
+                    if (currentRoute != item.route) {
+                        navController.navigate(item.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                inclusive = false
+                            }
                             launchSingleTop = true
                         }
                     }
-                } else {
-                    navController.navigate(destination) {
-                        launchSingleTop = true
-                    }
                 }
-            }
+            )
         }
-    ) {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { },
-                    navigationIcon = {
-                        IconButton(onClick = { scope.launch { drawerState.open() } }) {
-                            Icon(imageVector = Icons.Default.Menu, contentDescription = "Hamburger Menu")
-                        }
-                    }
-                )
-            },
-            content = { innerPadding ->
-                Box(modifier = Modifier.padding(innerPadding)) {
-                    NavHost(
-                        navController = navController,
-                        startDestination = "main_screen"
-                    ) {
-                        composable("main_screen") { MainContent() }
-                        composable("favorites_Screen") { FavoritesScreen(navController) }
-                        composable("settings_Screen") { SettingsScreen(navController) }
-                        composable("account_Screen") { AccountScreen(navController) }
-                    }
-                }
-            }
-        )
     }
 }
 
+data class BottomNavItem(val label: String, val icon: ImageVector, val route: String)
 
 @Composable
-fun MainContent() {
+fun MainContent(navController: NavController) {
     var selectedCategory by rememberSaveable { mutableStateOf("popular_content") }
 
-
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
     ) {
-        LogoContainer()
-        Spacer(modifier = Modifier.height(15.dp))
-        ShopCategories { category -> selectedCategory = category }
-        Spacer(modifier = Modifier.height(15.dp))
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            LogoContainer()
+            Spacer(modifier = Modifier.height(15.dp))
+            ShopCategories { category -> selectedCategory = category }
+            Spacer(modifier = Modifier.height(15.dp))
 
-
-        when (selectedCategory) {
-            "popular_content" -> PopularContent()
-            "fast_food_content" -> FastFoodContent()
-            "snacks_content" -> SnacksContent()
-            "beverage_content" -> BeverageContent()
+            when (selectedCategory) {
+                "popular_content" -> PopularContent(navController)
+                "fast_food_content" -> FastFoodContent()
+                "snacks_content" -> SnacksContent()
+                "beverage_content" -> BeverageContent()
+            }
         }
     }
 }
-
 
 @Composable
 fun LogoContainer() {
-    Column(
+    Box (
         modifier = Modifier
             .width(325.dp)
-            .height(180.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .height(200.dp)
+            .padding(top = 25.dp),
     ) {
         Image(
             painter = painterResource(id = R.drawable.homepage),
@@ -144,7 +163,6 @@ fun LogoContainer() {
 fun ShopCategories(onCategoryClick: (String) -> Unit) {
     var selectedCategory by remember { mutableStateOf("popular_content") }
 
-
     Column(
         modifier = Modifier
             .height(75.dp)
@@ -155,7 +173,8 @@ fun ShopCategories(onCategoryClick: (String) -> Unit) {
     ) {
         Text(
             text = "Top Categories",
-            fontSize = 16.sp, fontWeight = FontWeight.Bold
+            fontSize = 16.sp, fontWeight = FontWeight.Bold,
+            color = Color.Black
         )
         Spacer(modifier = Modifier.height(5.dp))
         Row(
@@ -164,58 +183,33 @@ fun ShopCategories(onCategoryClick: (String) -> Unit) {
                 .fillMaxHeight(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            LazyRow(horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-                item {
-                    CategoryItem(
-                        label = "Popular",
-                        isSelected = selectedCategory == "popular_content",
-                        onClick = {
-                            selectedCategory = "popular_content"
-                            onCategoryClick("popular_content")
-                        }
-                    )
-                }
-                item {
-                    CategoryItem(
-                        label = "Fast Food",
-                        isSelected = selectedCategory == "fast_food_content",
-                        onClick = {
-                            selectedCategory = "fast_food_content"
-                            onCategoryClick("fast_food_content")
-                        }
-                    )
-                }
-                item {
-                    CategoryItem(
-                        label = "Snacks",
-                        isSelected = selectedCategory == "snacks_content",
-                        onClick = {
-                            selectedCategory = "snacks_content"
-                            onCategoryClick("snacks_content")
-                        }
-                    )
-                }
-                item {
-                    CategoryItem(
-                        label = "Beverage",
-                        isSelected = selectedCategory == "beverage_content",
-                        onClick = {
-                            selectedCategory = "beverage_content"
-                            onCategoryClick("beverage_content")
-                        }
-                    )
+            LazyRow(horizontalArrangement = Arrangement.spacedBy(15.dp), modifier = Modifier.padding(end = 10.dp)) {
+                listOf(
+                    "Popular" to "popular_content",
+                    "Fast Food" to "fast_food_content",
+                    "Snacks" to "snacks_content",
+                    "Beverage" to "beverage_content"
+                ).forEach { (label, route) ->
+                    item {
+                        CategoryItem(
+                            label = label,
+                            isSelected = selectedCategory == route,
+                            onClick = {
+                                selectedCategory = route
+                                onCategoryClick(route)
+                            }
+                        )
+                    }
                 }
             }
         }
     }
 }
 
-
 @Composable
 fun CategoryItem(label: String, isSelected: Boolean, onClick: () -> Unit) {
     val backgroundColor = if (isSelected) colorResource(id = R.color.fofi_orange) else Color.White
     val textColor = if (isSelected) Color.White else Color.Black
-
 
     Text(
         text = label,
@@ -231,114 +225,38 @@ fun CategoryItem(label: String, isSelected: Boolean, onClick: () -> Unit) {
     )
 }
 
-
-
-
-
-
 @Composable
-fun DrawerContent(onItemClick: (String) -> Unit) {
-    var selectedItem by remember { mutableStateOf("main_screen") }
-
-
-    Column(
-        modifier = Modifier
-            .background(Color.White)
-            .fillMaxHeight()
-            .width(200.dp)
-            .padding(16.dp)
-    ) {
-        DrawerItem(
-            label = "Home",
-            icon = Icons.Default.Home,
-            isSelected = selectedItem == "main_screen"
-        ) {
-            selectedItem = "main_screen"
-            onItemClick("main_screen")
-        }
-
-
-        DrawerItem(
-            label = "Favorites",
-            icon = Icons.Default.FavoriteBorder,
-            isSelected = selectedItem == "favorites_screen"
-        ) {
-            selectedItem = "favorites_screen"
-            onItemClick("favorites_screen")
-        }
-
-
-        DrawerItem(
-            label = "Settings",
-            icon = Icons.Default.Settings,
-            isSelected = selectedItem == "settings_screen"
-        ) {
-            selectedItem = "settings_screen"
-            onItemClick("settings_screen")
-        }
-
-
-        DrawerItem(
-            label = "Account",
-            icon = Icons.Default.AccountCircle,
-            isSelected = selectedItem == "account_screen"
-        ) {
-            selectedItem = "account_screen"
-            onItemClick("account_screen")
-        }
-    }
-}
-
-
-@Composable
-fun DrawerItem(label: String, icon: ImageVector, isSelected: Boolean, onClick: () -> Unit) {
-    NavigationDrawerItem(
-        label = { Text(label) },
-        onClick = onClick,
-        icon = { Icon(icon, contentDescription = label) },
-        selected = isSelected,
-        colors = NavigationDrawerItemDefaults.colors(
-            selectedContainerColor = colorResource(id = R.color.fofi_orange)
-        )
-    )
-}
-
-
-
-
-@Composable
-fun PopularContent() {
+fun PopularContent(navController: NavController) {
     Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.TopCenter
+        modifier = Modifier.fillMaxWidth(),
+        contentAlignment = Alignment.Center
     ) {
         Column(
-            modifier = Modifier.verticalScroll(rememberScrollState()), // Enables scrolling
-            verticalArrangement = Arrangement.Top,
+            modifier = Modifier.verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Shop()
-            Spacer(modifier = Modifier.height(20.dp))
-            Shop()
-            Spacer(modifier = Modifier.height(20.dp))
-            Shop()
-            Spacer(modifier = Modifier.height(20.dp))
-            Shop()
-            Spacer(modifier = Modifier.height(20.dp))
+            ShopItem(navController)
+            ShopItem(navController)
+            ShopItem(navController)
         }
     }
 }
 
-
-
-
 @Composable
-fun FastFoodContent() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Fast Food Content")
+fun ShopItem(navController: NavController) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                navController.navigate("screen_ShopContent")
+            }
+            .padding(12.dp)
+    ) {
+        Shop()
     }
 }
-
 
 @Composable
 fun SnacksContent() {
@@ -347,11 +265,17 @@ fun SnacksContent() {
     }
 }
 
+@Composable
+fun FastFoodContent() {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Text("Fast Food Content")
+    }
+}
 
 @Composable
 fun BeverageContent() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Content")
+        Text("Beverage Content")
     }
 }
 
@@ -361,6 +285,3 @@ fun BeverageContent() {
 fun ShowMainScreen() {
     MainScreen(navController = rememberNavController())
 }
-
-
-
