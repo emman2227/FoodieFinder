@@ -1,0 +1,281 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8EDE3;
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    height: auto;
+    background: #FFF;
+    padding: 20px;
+    color: #faa96f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.top-bar {
+    width: 82.8%;
+    height: 60px;
+    margin-left: 17.2%;
+    background: #faa96f;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    color: #faa96f;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.menu-button.active {
+    background: #faa96f;
+    border-radius: 5px;
+    color: white;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #F8EDE3;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFDEC8;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 300px;
+    margin-top: 50px;
+    /*margin: 0 auto;*/
+}
+
+.header img {
+    width: 100%;
+    height: 264px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+
+.overview {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.overview h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.overview-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.card {
+    background: #FFDEC8;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: 65px;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.search-bar {
+    margin: 20px 0;
+}
+
+.search-bar input {
+    width: 98%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table th, table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    height: 30px;
+}
+
+table th {
+    background: white;
+    color: #faa96f;
+}
+
+.approve {
+    background: #faa96f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 5px 10px;
+}
+
+.decline {
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 5px 10px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.approve-selected {
+    background: #faa96f;
+    padding: 10px 15px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.decline-selected {
+    background: white;
+    padding: 10px 15px;
+    border-color: #faa96f;
+    color: #faa96f;
+    border-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header img {
+        margin-top: 10px;
+    }
+    
+    .overview-cards {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+        padding: 10px;
+    }
+    
+    .sidebar-logo {
+        width: 50px;
+    }
+    
+    .menu-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .shop-docs {
+        overflow-x: auto;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner h1 {
+        font-size: 32px;
+    }
+
+    .header img {
+        width: 250px;
+        height: auto;
+    }
+
+    .overview-cards {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-button {
+        font-size: 12px;
+    }
+    
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .header img {
+        width: 150px;
+        height: auto;
+    }
+
+    .view {
+        padding: 6px 10px;
+    }
+
+    .approve, .decline {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}

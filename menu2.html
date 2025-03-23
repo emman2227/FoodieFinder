@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Menu</title>
+    <link rel="stylesheet" href="assets/menu2.css">
+</head>
+<body>
+
+        <div class="container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <img src="logo.png" alt="Logo" class="sidebar-logo">
+                <button class="menu-button" onclick="window.location.href='dashboard.html';">Dashboard</button>
+                <button class="menu-button active" onclick="window.location.href='menu.html';">Menu</button>
+                <button class="menu-button" onclick="window.location.href='order.html';">Orders</button>
+                <button class="menu-button" onclick="window.location.href='bingo.html';">Bingo Card</button>
+                <button class="menu-button" onclick="window.location.href='settings.html';">Settings</button>
+
+            </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>Add New Menu Item</h1>
+            </div>
+
+            <div class="menu-container">
+                <!-- Left Side: Form Fields -->
+                <div class="form-left">
+                    <div class="input-container">
+                        <input type="text" id="name" placeholder="Enter menu name">
+                    </div>
+                    <div class="input-container">
+                        <input type="number" id="price" placeholder="Enter price" step="1">
+                    </div>
+                    <div class="input-container">
+                        <textarea id="desc" placeholder="Enter menu description"></textarea>
+                    </div>
+                    <button type="submit" class="save" id="saveBtn">Save</button>
+                </div>
+
+                <!-- Right Side: Image Upload -->
+                <div class="image-section">
+                    <div class="preview-container">
+                        <img id="previewImage" src="placeholder.jpg" alt="Preview Image">
+                    </div>
+                    <div class="image-upload">
+                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                        <button id="uploadImageBtn">Upload Image</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const uploadImageBtn = document.getElementById("uploadImageBtn");
+            const imageInput = document.getElementById("imageInput");
+            const previewImage = document.getElementById("previewImage");
+            const saveBtn = document.getElementById("saveBtn");
+
+            // Open file picker when clicking the upload button
+            uploadImageBtn.addEventListener("click", () => {
+                imageInput.click();
+            });
+
+            // Preview and store the uploaded image as Base64
+            imageInput.addEventListener("change", function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        previewImage.src = e.target.result;
+                        localStorage.setItem("menu_image", e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Handle Save Button Click
+            saveBtn.addEventListener("click", () => {
+                const name = document.getElementById("name").value.trim();
+                const price = document.getElementById("price").value.trim();
+                const desc = document.getElementById("desc").value.trim();
+                const shop_id = 2; // Replace with the actual shop ID dynamically if needed
+                const imageFile = imageInput.files[0];
+
+                if (!name || !price || !desc || !imageFile) {
+                    showBanner("Please fill in all fields.", "error");
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append("shop_id", shop_id);
+                formData.append("product_name", name);
+                formData.append("price", price);
+                formData.append("description", desc);
+                formData.append("image", imageFile);
+
+                fetch("https://mature-pig-apparently.ngrok-free.app/FoodieFinder/api/index.php?route=create-menu", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 201) {
+                        showBanner("Menu added successfully!", "success");
+                        setTimeout(() => {
+                            window.location.href = "menu.html";
+                        }, 1000);
+                    } else {
+                        showBanner(`Failed to add menu: ${data.message}`, "error");
+                    }
+                })
+                .catch(error => {
+                    showBanner("Error: " + error.message, "error");
+                });
+            });
+
+            // Function to show a banner notification
+            function showBanner(message, type) {
+                const banner = document.createElement("div");
+                banner.textContent = message;
+                banner.style.position = "fixed";
+                banner.style.top = "20px";
+                banner.style.left = "50%";
+                banner.style.transform = "translateX(-50%)";
+                banner.style.padding = "10px 20px";
+                banner.style.color = "#fff";
+                banner.style.fontSize = "16px";
+                banner.style.borderRadius = "5px";
+                banner.style.zIndex = "1000";
+
+                if (type === "success") {
+                    banner.style.backgroundColor = "#4CAF50"; // Green for success
+                } else {
+                    banner.style.backgroundColor = "#FF5733"; // Red for error
+                }
+
+                document.body.appendChild(banner);
+
+                // Remove banner after 2 seconds
+                setTimeout(() => {
+                    banner.remove();
+                }, 2000);
+            }
+        });
+    </script>
+
+</body>
+</html>

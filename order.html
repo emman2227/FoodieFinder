@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Order Management</title>
+    <link rel="stylesheet" href="assets/order.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="logo.png" alt="Logo" class="sidebar-logo">
+            <button class="menu-button" onclick="window.location.href='dashboard.html';">Dashboard</button>
+            <button class="menu-button" onclick="window.location.href='menu.html';">Menu</button>
+            <button class="menu-button active" onclick="window.location.href='order.html';">Orders</button>
+            <button class="menu-button" onclick="window.location.href='bingo.html';">Bingo Card</button>
+            <button class="menu-button" onclick="window.location.href='settings.html';">Settings</button>
+
+        </div>
+
+    <div class="main-content">
+        <header class="header">
+            <h1>Product Status</h1>
+        </header>
+    
+        <div class="pre-order-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Item</th>
+                        <th>Status</th>
+                        <th>Completion</th>
+                    </tr>
+                </thead>
+                <tbody id="order-items">
+                    <!-- Orders will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Sample orders
+            let orders = [
+                { id: "1001", customerName: "E", item: "Margheritta Pizza", status: "Pending" },
+                { id: "1002", customerName: "S", item: "Gelatina Coffee", status: "Pending" },
+                { id: "1003", customerName: "M", item: "Brewed Coffee", status: "Pending" },
+                { id: "1004", customerName: "J", item: "Sinigang na hotdog", status: "Pending" }
+            ];
+
+            let orderTable = document.getElementById("order-items");
+
+            function renderOrders() {
+                orderTable.innerHTML = "";
+                orders.forEach((order, index) => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td><div class="orange-box">${order.customerName}</div></td>
+                        <td>${order.item}</td>
+                        <td>
+                            <select class="status" data-index="${index}">
+                                <option value="pending" ${order.status === "Pending" ? "selected" : ""}>Pending</option>
+                                <option value="completed" ${order.status === "Completed" ? "selected" : ""}>Completed</option>
+                            </select>
+                        </td>
+                        <td><input type="checkbox" class="completion" data-index="${index}" ${order.status === "Completed" ? "checked" : ""}></td>
+                    `;
+                    orderTable.appendChild(row);
+                });
+
+                document.querySelectorAll(".status").forEach(select => {
+                    select.addEventListener("change", function () {
+                        let index = this.getAttribute("data-index");
+                        orders[index].status = this.value;
+                    });
+                });
+
+                document.querySelectorAll(".completion").forEach(checkbox => {
+                    checkbox.addEventListener("change", function () {
+                        let index = this.getAttribute("data-index");
+                        if (this.checked) {
+                            orders[index].status = "Completed";
+                        } else {
+                            orders[index].status = "Pending";
+                        }
+                        renderOrders();
+                    });
+                });
+            }
+
+            renderOrders();
+        });
+    </script>
+
+    
+</body>
+</html>

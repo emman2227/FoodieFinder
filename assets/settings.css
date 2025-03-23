@@ -1,0 +1,354 @@
+/* Resetting margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #171A1F;
+    padding: 20px;
+    color: #faa96f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed; /* Makes sidebar fixed */
+    top: 0;
+    left: 0;
+}
+
+.sidebar-logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    color: #faa96f;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.menu-button.active {
+    background: #faa96f;
+    border-radius: 5px;
+    color: white;
+}
+
+/* Main Layout */
+.container {
+    display: flex;
+    height: 100vh;
+    margin-left: 220px; /* Prevents content from overlapping with sidebar */
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Header Styling */
+.header {
+    background-color: #f7f7f7;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    max-width: 1000px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: #faa96c;
+}
+
+/* Profile Section */
+.profile-section {
+    background-image: url(tomoro-bg.png); /* Background Image */
+    background-size: cover;
+    background-position: top; /* Change to 'top' to ensure the top part of the image shows */
+    padding: 50px 0;
+    text-align: center;
+    color: white;
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the top */
+}
+
+/* Create a white background for the lower part of the profile section */
+.profile-section::after {
+    content: '';
+    position: absolute;
+    top: 40%; /* Adjust this value to move the white section up */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%; /* Adjust height of the white section */
+    background-color: white; /* White background for the lower half */
+    border-radius: 10px 10px 0 0; /* Optional: rounded top corners for a softer look */
+}
+
+/* Profile container styles */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px;
+    border-radius: 10px;
+    z-index: 1; /* Ensure the profile container sits above the pseudo-element */
+    position: relative;
+}
+
+/* Profile image styles */
+.profile-image {
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    margin-top: 50px; /* Reduce the margin to lift the profile image up */
+    margin-bottom: 20px;
+}
+
+/* Profile text styles */
+.profile-text h2 {
+    margin-top: 3px;
+    font-size: 2rem;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+/* Profile text styles */
+.profile-text p {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: grey; /* Change text color to grey */
+}
+
+/* Profile button styles */
+.profile-button {
+    background-color: white;
+    color: #faa96c;
+    outline: 3px solid #faa96c; /* Always visible outline */
+    padding: 5px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.profile-button:hover {
+    background-color: #e8e6e6;
+}
+
+/* Additional info text */
+.additional-info {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: grey;
+    line-height: 1.6;
+    text-align: left; /* Keep the text left-aligned */
+    width: 150%; /* Adjust the width to something less than 100% */
+    max-width: 1000px; /* Optional: limit the width */
+    margin-left: -100px; /* Move the whole block to the left */
+    margin-right: auto; /* Ensure it doesn't overflow to the right */
+}
+
+
+
+/* Form Wrapper Section */
+.form-wrapper {
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.fill-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reduced gap between form elements */
+    margin-top: 100px;
+}
+
+/* Remove space between inputs */
+.fill-form .input-container {
+    margin-bottom: 0; /* Remove bottom margin */
+}
+
+.fill-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between image and input field */
+    border: 0; /* Border for the container */
+    padding: 5px; /* Padding inside the input container */
+    border-radius: 5px; /* Rounded corners for the container */
+}
+
+.fill-form input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Update button styles */
+.submit-btn {
+    background-color: #faa96c;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px; /* Decreased width of the button */
+    height: 40px;
+    margin-top: 40px; /* Optional: space above the button */
+    margin-left: 235px;
+}
+
+.submit-btn:hover {
+    background-color: #ff8c1a;
+}
+
+
+
+/* Additional Section */
+.additional-section {
+    padding: 40px;
+    text-align: center;
+}
+
+.additional-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    margin-right: 1000px;
+}
+
+.additional-section p {
+    font-size: 1rem;
+    margin-bottom: 40px;
+    margin-right: 800px;
+}
+
+.additional-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Styling for the form group */
+.additional-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Add space between label and input container */
+}
+
+/* Label styles */
+.additional-form label {
+    font-weight: bold;
+}
+
+/* Style for input container to align image and input */
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between image and input field */
+    border: 1px solid #ccc; /* Border for the container */
+    padding: 5px; /* Padding inside the input container */
+    border-radius: 30px; /* Rounded corners for the container */
+}
+
+.input-container img {
+    width: 25px; /* Adjust the image size */
+    height: 25px;
+}
+
+.additional-form input {
+    padding: 10px;
+    font-size: 1rem;
+    border: none; /* Removed border from the input itself */
+    width: 100%;
+    border-radius: 30px;
+}
+
+/* Button container */
+.button-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Styling for both buttons to be the same size */
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: 120px; /* Make both buttons same width */
+}
+
+.cancel-btn {
+    background-color: white;
+    color: #faa96c;
+    outline: 3px solid #faa96c; /* Always visible outline */
+    border: none;
+    cursor: pointer;
+    height: 40px;
+}
+
+.cancel-btn:hover {
+    background-color: #e8e6e6;
+}
+
+.update-btn {
+    background-color: #faa96c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    width: 200px;
+}
+
+.update-btn:hover {
+    background-color: #ff8c1a;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+    .sidebar-logo {
+        width: 50px;
+    }
+    .menu-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-button {
+        font-size: 12px;
+    }
+}

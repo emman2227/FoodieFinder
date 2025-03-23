@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Order Management</title>
+    <link rel="stylesheet" href="assets/bingo.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="logo.png" alt="Logo" class="sidebar-logo">
+            <button class="menu-button" onclick="window.location.href='dashboard.html';">Dashboard</button>
+            <button class="menu-button" onclick="window.location.href='menu.html';">Menu</button>
+            <button class="menu-button" onclick="window.location.href='order.html';">Orders</button>
+            <button class="menu-button active" onclick="window.location.href='bingo.html';">Bingo Card</button>
+            <button class="menu-button" onclick="window.location.href='settings.html';">Settings</button>
+
+        </div>
+
+    <!-- Text Above the Wrapper -->
+    <div class="main-content">
+        <header class="header">
+            <h1>Bingo Card</h1>
+        </header>
+    
+        <!-- First Wrapper -->
+        <div class="header-text">
+            <h2>Create Bingo Card</h2>
+        </div>
+    
+        <div class="wrapper first-wrapper">
+            <!-- Orange Box Container -->
+            <div class="orange-box-container">
+                <!-- Row 1 -->
+                <div class="row">
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="row">
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                </div>
+                <!-- Row 3 -->
+                <div class="row">
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="add-btn-container">
+                <button class="add-btn">Generate</button>
+            </div>
+        </div>
+    
+        <!-- Second Wrapper (Pre-order Management) -->
+        <div class="header-text2">
+            <h2>Customers Slot Completed</h2>
+        </div>
+    
+        <!-- Second Wrapper (Pre-order Management) -->
+    <div class="wrapper second-wrapper">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Item (Quantity)</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="order-items">
+                    <!-- Orders will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Third Wrapper (Form) -->
+    <div class="header-text3">
+        <h2>Customers Discount</h2>
+    </div>
+    <div class="wrapper third-wrapper">
+        <form id="order-form">
+            <div class="input-container">
+                <label for="id">Enter Customer ID:</label>
+                <input type="text" id="CustomerID" name="CustomerID" placeholder="ex.102116">
+            </div>
+            <button type="submit" class="submit-btn">Done</button>
+        </form>
+    </div>
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let orders = [
+            { id: "1001", customerName: "E", item: "9/9", status: "Completed", progress: 100 },
+            { id: "1002", customerName: "S", item: "7/9", status: "Pending", progress: 70 },
+            { id: "1003", customerName: "M", item: "1/9", status: "Pending", progress: 10 },
+            { id: "1004", customerName: "J", item: "4/9", status: "Pending", progress: 40 }
+        ];
+
+        let orderTable = document.getElementById("order-items");
+
+        function renderOrders() {
+            orderTable.innerHTML = "";
+            orders.forEach((order, index) => {
+                let row = document.createElement("tr");
+                row.innerHTML = `
+                    <td><div class="orange-box">${order.customerName}</div></td>
+                    <td>${order.item}</td>
+                    <td>
+                        <div class="status-text">${order.status === "Pending" ? "Pending" : "Completed"}</div>
+                    </td>
+                `;
+                orderTable.appendChild(row);
+            });
+        }
+
+        renderOrders();
+    });
+</script>
+
+</body>
+</html>

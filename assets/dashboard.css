@@ -1,0 +1,411 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #171A1F;
+    padding: 20px;
+    color: #faa96f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed; /* Makes sidebar fixed */
+    top: 0;
+    left: 0;
+}
+
+.sidebar-logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    color: #faa96f;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.menu-button.active {
+    background: #faa96f;
+    border-radius: 5px;
+    color: white;
+}
+
+/* Main Layout */
+.container {
+    display: flex;
+    height: 100vh;
+    margin-left: 220px; /* Prevents content from overlapping with sidebar */
+
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+/* Header Styles */
+.header {
+    background-color: #f7f7f7;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    max-width: 1000px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: #faa96c;
+}
+.wrapper {
+    background-color: #FAA96C; /* Change wrapper background to orange */
+    padding: 30px;
+    margin: 0 auto 30px; /* Center the wrapper horizontally and keep the bottom margin */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Set the width to 90% of the parent container */
+    max-width: 1200px; /* Set a maximum width to prevent the wrapper from growing too large */
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+/* Section Titles */
+.orders-section-title {
+    font-size: 2em;
+    color: #fff; /* Adjust text color for better contrast on orange */
+    margin-bottom: 20px;
+    text-align: center;
+    margin-right: 1000px ;
+    margin-bottom: 30px;
+}
+
+.products-section-title {
+    font-size: 2em;
+    color: black;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-right: 1000px ;
+    margin-bottom: 30px;
+}
+
+
+/* Box Wrapper for Flex Layout (Orders and Products) */
+.orders-box-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.products-box-wrapper {
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    gap: 20px; /* Horizontal gap between product boxes */
+    flex-wrap: wrap; /* Allows the product boxes to wrap to the next line */
+    margin-bottom: 30px;
+    height: auto; /* The height will adjust based on the content */
+    min-height: 0; /* Allow height to shrink */
+}
+
+/* Box Styles (Order Box and Product Box) */
+.order-box {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: calc(33% - 20px); /* Adjust width to have 3 boxes in one row */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-box {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    flex: 1 1 calc(50% - 20px); /* Increase the width to 50% minus the gap */
+    min-width: 400px; /* Ensure that the boxes have a minimum width */
+    max-width: 400px; /* Limit the max width */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto; /* Allow the box to adjust height based on content */
+    margin-bottom: 20px; /* Space between rows */
+}
+
+.product-box-total-sales-box {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    flex: 1;
+    min-width: 270px;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Keep the other elements aligned at the top */
+    align-items: flex-start; /* Keep all items aligned to the left */
+    height: auto; /* Adjust the height based on content */
+    margin-left: 20px;
+    margin-bottom: 20px; /* Space between rows */
+}
+
+.product-box-total-sales-box .number {
+    font-size: 40px;
+    color: black;
+    margin-top: 100px; /* Increase the margin to move the number further down */
+    margin-left: 40px;
+    display: flex;
+    justify-content: center; /* Center the number horizontally */
+    align-items: center; /* Center the number vertically */
+    width: 100%; /* Take full width */
+    text-align: center; /* Ensure the text is centered within the box */
+}
+
+.product-box-total-sales-box .choices {
+    padding: 8px;
+    width: 100%;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    margin-top: 120px; /* Move the choices down */
+    color: #FAA96C;
+}
+
+.order-box .number {
+    font-size: 40px;
+    color: black;
+    margin-top: 10px; /* Increase the margin to move the number further down */
+    margin-left: -10px;
+    display: flex;
+    justify-content: center; /* Center the number horizontally */
+    align-items: center; /* Center the number vertically */
+    width: 100%; /* Take full width */
+    text-align: center; /* Ensure the text is centered within the box */
+}
+
+
+/* Title inside each box (Total Orders, Total Sales, etc.) */
+.name-user strong {
+    font-size: 1.2em;
+    color: #FAA96C;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.product-box .number {
+    font-size: 40px;
+    color: black;
+    margin-top: 5px; /* Increase the margin to move the number further down */
+    margin-left: -140px;
+    display: flex;
+    justify-content: center; /* Center the number horizontally */
+    align-items: center; /* Center the number vertically */
+    width: 100%; /* Take full width */
+    text-align: center; /* Ensure the text is centered within the box */
+}
+
+/* Select Box Styles (for choices) */
+.choices {
+    padding: 8px;
+    width: 100%;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    color: #FAA96C;
+}
+
+.order-box:hover {
+    transform: translate(-10px);
+    transition: all ease 0.3s;
+}
+
+.product-box:hover {
+    transform: translate(-10px);
+    transition: all ease 0.3s;
+}
+
+.product-box-total-sales-box:hover {
+    transform: translate(-10px);
+    transition: all ease 0.3s;
+}
+
+
+
+/* Footer Styling */
+footer {
+    margin-top: 400px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 50px 100px;
+    background: black;
+}
+
+footer .logo {
+    margin-top: -15px;
+    margin-left: 15px;
+}
+
+.icn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0; /* Remove space between icons */
+    width: 100%;
+}
+
+.icn {
+    display: flex;
+    justify-content: flex-start; /* Ensures images are closely packed */
+    align-items: center;
+    margin: 0; /* Remove any default margins */
+}
+
+.icn img {
+    width: 30px; /* Optional: adjust the size if needed */
+    height: 30px; /* Optional: adjust the size if needed */
+    margin: 15px; /* Remove any margin between images */
+    padding: 0; /* Remove any padding if set */
+}
+
+
+
+footer .footer-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+}
+
+footer .footer-container .sec h2 {
+    position: relative;
+    color: white; /* Makes section titles white */
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+footer .footer-container .sec h2::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+}
+
+/* Navigation Styling */
+footer .footer-container .navigation ul.navg {
+    list-style: none;
+    padding-left: 0;
+}
+
+footer .footer-container .navigation ul.navg li {
+    margin-bottom: 10px;
+}
+
+footer .footer-container .navigation ul.navg li a {
+    color: white; /* Makes the navigation links white */
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+footer .footer-container .navigation ul.navg li a:hover {
+    color: rgb(255, 213, 0); /* Changes color on hover */
+    text-decoration: underline; /* Underlines the text on hover */
+}
+
+footer .footer-container .navigation ul.navg li a:active {
+    color: rgb(255, 213, 0); /* Color stays orangered on click */
+    text-decoration: underline; /* Underlines the text when clicked */
+}
+
+/* Contact Information Styling */
+footer .footer-container .contact ul.info {
+    list-style: none;
+    padding-left: 0;
+}
+
+footer .footer-container .contact ul.info li p a {
+    color: white; /* Makes contact information links white */
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer .footer-container .contact ul.info li p a:hover {
+    color: rgb(255, 213, 0); /* Changes color on hover */
+    text-decoration: underline; /* Underlines the text on hover */
+}
+
+/* Helpful Links Styling */
+footer .footer-container .help ul.navg {
+    list-style: none;
+    padding-left: 0;
+}
+
+footer .footer-container .help ul.navg li {
+    margin-bottom: 10px;
+}
+
+footer .footer-container .help ul.navg li a {
+    color: white; /* Makes helpful links white */
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+footer .footer-container .help ul.navg li a:hover {
+    color: rgb(255, 213, 0); /* Changes color on hover */
+    text-decoration: underline; /* Underlines the text on hover */
+}
+
+footer .footer-container .help ul.navg li a:active {
+    color: rgb(255, 213, 0); /* Color stays orangered on click */
+    text-decoration: underline; /* Underlines the text when clicked */
+}
+
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+    .sidebar-logo {
+        width: 50px;
+    }
+    .menu-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+@media (max-width: 480px) {
+    .menu-button {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,331 @@
+/* Resetting margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #171A1F;
+    padding: 20px;
+    color: #faa96f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed; /* Makes sidebar fixed */
+    top: 0;
+    left: 0;
+}
+
+.sidebar-logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    color: #faa96f;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.menu-button.active {
+    background: #faa96f;
+    border-radius: 5px;
+    color: white;
+}
+
+/* Main Layout */
+.container {
+    display: flex;
+    height: 100vh;
+    margin-left: 220px; /* Prevents content from overlapping with sidebar */
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Header Styling */
+.header {
+    background-color: #f7f7f7;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    max-width: 1000px;
+    margin-top: 20px;
+    border-radius: 8px;
+    margin-bottom: 50px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: #faa96c;
+}
+
+/* First Wrapper */
+.first-wrapper {
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    width: 100%; /* Increased width to 85% */
+    max-width: 1000px; /* Increased max-width to allow more space */
+    margin: 0 auto; /* Center the wrapper horizontally */
+    border-radius: 10px;
+}
+
+/* Orange Box Container */
+.orange-box-container {
+    background-color: #faa96c; /* Orange background for the large box */
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%; /* Make sure the container takes up 100% of the available width */
+    padding: 25px; /* Equal padding on all sides */
+    padding-top: 40px;
+    padding-bottom: 10px; /* Decreased bottom padding */
+    border-radius: 8px;
+    margin-bottom: 50px; /* Space between orange box and button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow */
+
+}
+
+
+/* Row Styling for Boxes */
+.row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 35px; /* Space between rows */
+}
+
+/* Box Styling */
+.box {
+    background-color: white;
+    width: 350px; /* Adjusted size of each box */
+    height: 200px; /* Adjusted size of each box */
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px; /* Space between the boxes within the row */
+}
+
+.box:hover {
+    transform: translate(-10px);
+    transition: all ease 0.3s;
+}
+
+.box:last-child {
+    margin-right: 0; /* No margin on the last box in the row */
+}
+
+/* Plus Button Styling */
+.plus-btn {
+    background-color: #faa96c;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0;
+    border: none;
+    width: 60px; /* Adjusted size of the button */
+    height: 40px; /* Adjusted size of the button */
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.plus-btn:hover {
+    background-color: #ff8c1a;
+}
+
+/* Add Button Container */
+.add-btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ensures the button is centered */
+    margin-top: 20px; /* Space between the orange box and the button */
+}
+
+/* Add Button Styling */
+.add-btn {
+    background-color: #faa96c; /* Orange color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: #ff8c1a; /* Darker orange on hover */
+}
+
+
+
+
+.header-text2{
+    color: black;
+    margin-bottom: 20px;
+    margin-top: 100px;
+    margin-left: 80px;
+    font-size: 25px;
+}
+
+/* Second Wrapper (Pre-order Management) */
+.second-wrapper {
+    margin-top: 100px;
+    width: 90%;
+    max-width: 100%;
+    margin: 0 auto;
+    background: none;
+    box-shadow: none;
+}
+.table-wrapper {
+    margin: 0 auto;
+    padding: 40px 40px; /* Increase top and bottom padding between wrapper and table */
+    background-color: #f4f4f4;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #faa96c;
+    color: white;
+    font-weight: bold;
+}
+
+.orange-box {
+    background-color: #faa96c;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    position: relative;  /* Set position relative to itself */
+    left: 115px;  /* Move it to the right */
+}
+
+.status-text {
+    font-weight: bold;
+    color: #333;
+}
+
+
+.header-text3{
+    color: black;
+    margin-bottom: 20px;
+    margin-top: 100px;
+    margin-left: 80px;
+    font-size: 25px;
+}
+/* Third Wrapper (Form) */
+.third-wrapper {
+    background-color: #f4f4f4;
+    padding: 20px;
+    width: 90%; /* Decrease the width of the wrapper */
+    height: 150px; /* Adjusted height */
+    margin: 0 auto; /* Center the wrapper */
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: row; /* Arrange label and input in a row */
+    align-items: center; /* Align input and label vertically */
+    gap: 15px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row; /* Arrange label and input in a row */
+    align-items: center; /* Align input and label vertically */
+    gap: 10px; /* Space between label and input */
+    margin-top: 35px;
+    margin-left: 20px;
+}
+
+/* Label */
+label {
+    font-size: 1.5rem;
+    margin-right: 10px; /* Optional: space between the label and input */
+    font-weight: bold;
+}
+
+/* Input Field */
+input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px; /* Set a specific width for the input */
+}
+
+/* Submit button beside the form or moved down */
+button.submit-btn {
+    background-color: #faa96c;
+    color: white;
+    cursor: pointer;
+    width: 90px; /* Increased width */
+    height: 30px; /* Increased height */
+    align-self: center; /* Keep button vertically centered relative to the input */
+    margin-left: 20px; /* Space between the form and button */
+    border: none; /* Remove the black outline */
+    border-radius: 5px; /* Optional: rounded corners */
+    margin-top: 30px;
+}
+
+/* Button hover effect */
+button.submit-btn:hover {
+    background-color: #ff8c1a;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+    .sidebar-logo {
+        width: 50px;
+    }
+    .menu-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-button {
+        font-size: 12px;
+    }
+}

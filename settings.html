@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="assets/settings.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="logo.png" alt="Logo" class="sidebar-logo">
+            <button class="menu-button" onclick="window.location.href='dashboard.html';">Dashboard</button>
+            <button class="menu-button" onclick="window.location.href='menu.html';">Menu</button>
+            <button class="menu-button" onclick="window.location.href='order.html';">Orders</button>
+            <button class="menu-button" onclick="window.location.href='bingo.html';">Bingo Card</button>
+            <button class="menu-button active" onclick="window.location.href='settings.html';">Settings</button>
+
+        </div>
+
+    <div class="main-content">
+        <!-- Header -->
+    <header class="header">
+        <h1>Settings</h1>
+    </header>
+
+ <!-- Profile Section -->
+<section class="profile-section">
+    <div class="profile-container">
+        <div class="profile-image-container">
+            <img src="user-profile.png" alt="Profile Image" class="profile-image">
+        </div>
+        <div class="profile-text">
+            <h2>Tomoro Coffee Shop</h2>
+            <p>Tomorocoffeeshop@gmail.com</p>
+        </div>
+        <button class="profile-button">Edit</button>
+        <p class="additional-info">Tomoro Coffee is a fast-growing, tech-enabled coffee chain founded in Jakarta in 2022. It offers high-quality, affordable coffee using automation and flexible store formats. Expanding rapidly across Southeast Asia, including the Philippines, Tomoro Coffee serves 100% coffee beans with diverse, innovative flavors.</p>
+    </div>
+</section>
+
+
+    <!-- Form Wrapper Section -->
+    <section class="form-wrapper">
+        <form class="fill-form">
+            <div class="fill-container">
+                <input type="text" id="name" name="name" placeholder="Shop Name">
+            </div>
+            <div class="fill-container">
+                <input type="text" id="hours" name="hours" placeholder="Working Hours">
+            </div>
+            <div class="fill-container">
+                <input type="email" id="emailAD" name="emailAD" placeholder="Email">
+            </div>
+            <div class="fill-container">
+                <input type="number" id="phone" name="phone" placeholder="Phone Number">
+            </div>
+            <div class="fill-container">
+                <input id="desc" name="desc" placeholder="Shop description">
+            </div>
+            <button type="submit" class="submit-btn">Update</button>
+        </form>
+    </section>
+
+    <!-- Additional Section with Heading, Text, and Form -->
+    <section class="additional-section">
+        <h2>Password</h2>
+        <p>Here, you can change the password to your account.</p>
+
+
+        <form class="additional-form">
+            <div class="form-group">
+                <label for="password">Current Password:</label>
+                <div class="input-container">
+                    <img src="password.png" alt="Password Icon">
+                    <input type="password" id="pass" name="pass" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">New Password:</label>
+                <div class="input-container">
+                    <img src="password.png" alt="Password Icon">
+                    <input type="password" id="pass" name="pass" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Confirm Password:</label>
+                <div class="input-container">
+                    <img src="password.png" alt="Password Icon">
+                    <input type="password" id="pass" name="pass" required>
+                </div>
+            </div>
+            <div class="button-container">
+                <button type="cancel" class="cancel-btn">Cancel</button>
+                <button type="update" class="update-btn">Update Password</button>
+            </div>
+        </form>
+        
+        
+    </section>
+    </div>
+    </div>
+
+
+</body>
+</html>
