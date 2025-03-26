@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | FoodieFinder Admin</title>
+    <link rel="stylesheet" href="styles/bingo.css">
+</head>
+<body>
+    <div class="container">
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/FoodieFinder Logo's.png" width="200px">
+        </div>
+            <div class="links"><img src="images/Dashboard (TRANSP) .png" width="30px"><a href="dashboard.html">Dashboard</a></div>
+            <div class="links"><img src="images/Menu (TRANSP) .png" width="30px"><a href="menu.html">Menu</a></div>
+            <div class="links"><img src="images/Cloche (TRANSP) .png" width="30px"><a href="orders.html">Orders</a></div>
+            <div class="links"><img src="images/Bingo (TRANSP) .png" width="30px"><a href="bingo.html">Bingo card</a></div>
+            <div class="links"><img src="images/Settings (TRANSP) .png" width="30px"><a href="settings.html">Settings</a></div>
+            <div class="logout"><img src="images/Log out (TRANSP) .png" width="30px"><a href="">Logout</a></div>
+    </div>
+    <div class="main-contents">
+            <div class="header">
+                <h1> Settings </h1>
+            </div>
+        <div class="contents">   
+                <div class="bingo-img">
+                    <img src="images/Analytics (Image).png">
+                </div>
+                <div class="header-text">
+                    <h2>Create Bingo Card</h2>
+        </div>
+        <div class="wrapper first-wrapper">
+                    <!-- Orange Box Container -->
+            <div class="orange-box-container">
+                        <!-- Row 1 -->
+                <div class="row">
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                </div>
+                        <!-- Row 2 -->
+                <div class="row">
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                </div>
+                <!-- Row 3 -->
+                <div class="row">
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                    <div class="box">
+                        <button class="plus-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="add-btn-container">
+                <button class="add-btn">Generate</button>
+            </div>
+        </div>
+        <div class="contents2">
+            <div class="header-text2">
+                <h2>Customers Slot Completed</h2>
+            </div>
+        
+            <!-- Second Wrapper (Pre-order Management) -->
+        <div class="wrapper second-wrapper">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Item (Quantity)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-items">
+                        <!-- Orders will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Third Wrapper (Form) -->
+    <div class="header-text3">
+        <h2>Customers Discount</h2>
+    </div>
+    <div class="wrapper third-wrapper">
+        <form id="order-form">
+            <div class="input-container">
+                <label for="id">Enter Customer ID:</label>
+                <input type="text" id="CustomerID" name="CustomerID" placeholder="ex.102116">
+            </div>
+            <button type="submit" class="submit-btn">Done</button>
+        </form>
+    </div>
+    </div>
+        </div>
+    </div>
+</body>
+</html>
